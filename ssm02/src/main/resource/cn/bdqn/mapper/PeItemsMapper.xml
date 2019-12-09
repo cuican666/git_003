@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.bdqn.mapper.PeItemsMapper">
+
+
+    <select id="selectByTypeId" resultType="cn.bdqn.domain.PeItems">
+        select
+            p.itemId,p.itemName,p.typeId,p.necessary,p.ref,p.price,p.info,i.typeName
+         from
+            itemtypes as i,peitems as p
+         <where>
+            i.typeId=p.typeId and i.typeId=#{typeId}
+         </where>
+    </select>
+
+    <update id="updatePeItems" parameterType="cn.bdqn.domain.PeItems">
+        update
+            peItems
+        set
+            itemName=#{itemName},typeId=#{typeId},necessary=#{necessary},ref=#{ref},price=#{price},info=#{info}
+        where
+            itemId=#{itemId}
+    </update>
+
+    <select id="selectByTypeId" resultType="cn.bdqn.domain.PeItems">
+        select
+        p.itemId,p.itemName,p.typeId,p.necessary,p.ref,p.price,p.info,i.typeName
+        from
+        itemtypes as i,peitems as p
+        where
+            i.typeId=p.typeId and i.itemId=#{itemId}
+    </select>
+</mapper>
